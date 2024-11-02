@@ -4,11 +4,8 @@ export default defineNuxtConfig({
 
     modules: ["@nuxt/eslint", "@nuxt/ui"],
 
-    nitro: {
-        // Temporary workaround for prerender regression. see https://github.com/nuxt/nuxt/issues/27490
-        prerender: {
-            routes: ["/"],
-        },
+    routeRules: {
+        "/": { swr: true },
     },
 
     devtools: {
