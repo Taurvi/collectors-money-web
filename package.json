@@ -12,15 +12,26 @@
         "typecheck": "nuxt typecheck"
     },
     "dependencies": {
+        "@aws-amplify/ui-vue": "^4.2.22",
         "@iconify-json/heroicons": "^1.2.1",
         "@iconify-json/simple-icons": "^1.2.9",
         "@nuxt/ui-pro": "^1.4.4",
+        "aws-amplify": "^6.8.0",
         "nuxt": "^3.13.2"
     },
     "devDependencies": {
+        "@antfu/eslint-config": "^3.8.0",
+        "@aws-amplify/backend": "^1.6.0",
+        "@aws-amplify/backend-cli": "^1.4.0",
         "@nuxt/eslint": "^0.6.0",
+        "aws-cdk": "^2.165.0",
+        "aws-cdk-lib": "^2.165.0",
+        "constructs": "^10.4.2",
+        "esbuild": "^0.24.0",
         "eslint": "^9.13.0",
         "prettier": "^3.3.3",
+        "tsx": "^4.19.2",
+        "typescript": "^5.6.3",
         "vue-tsc": "^2.1.6"
     },
     "packageManager": "pnpm@9.12.2"

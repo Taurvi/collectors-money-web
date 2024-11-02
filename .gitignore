@@ -25,3 +25,8 @@ logs
 
 # VSC
 .history
+
+# amplify
+.amplify
+amplify_outputs*
+amplifyconfiguration*
