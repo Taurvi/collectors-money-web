@@ -1,33 +1,32 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: ['@nuxt/ui-pro'],
+    extends: ["@nuxt/ui-pro"],
 
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/ui'
-  ],
+    modules: ["@nuxt/eslint", "@nuxt/ui"],
 
-  routeRules: {
-    // Temporary workaround for prerender regression. see https://github.com/nuxt/nuxt/issues/27490
-    '/': { prerender: true }
-  },
+    nitro: {
+        // Temporary workaround for prerender regression. see https://github.com/nuxt/nuxt/issues/27490
+        prerender: {
+            routes: ["/"],
+        },
+    },
 
-  devtools: {
-    enabled: true
-  },
+    devtools: {
+        enabled: true,
+    },
 
-  future: {
-    compatibilityVersion: 4
-  },
+    future: {
+        compatibilityVersion: 4,
+    },
 
-  eslint: {
-    config: {
-      stylistic: {
-        commaDangle: 'never',
-        braceStyle: '1tbs'
-      }
-    }
-  },
+    eslint: {
+        config: {
+            stylistic: {
+                commaDangle: "never",
+                braceStyle: "1tbs",
+            },
+        },
+    },
 
-  compatibilityDate: '2024-07-11'
-})
+    compatibilityDate: "2024-07-11",
+});
