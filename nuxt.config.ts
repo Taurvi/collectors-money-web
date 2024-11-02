@@ -4,6 +4,7 @@ export default defineNuxtConfig({
 
     modules: ["@nuxt/eslint", "@nuxt/ui"],
 
+    // https://github.com/nuxt/nuxt/issues/25411
     routeRules: {
         "/": { swr: true },
     },
