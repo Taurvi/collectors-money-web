@@ -1,3 +1,5 @@
+<script setup lang="ts"></script>
+
 <template>
   <div>
     <ULandingHero
@@ -31,7 +33,8 @@
       title="The freedom to build anything"
     >
       <template #description>
-        Nuxt UI Pro ships with an extensive set of advanced components that cover a wide range of use-cases.<br> Carefully crafted to reduce boilerplate code without sacrificing flexibility.
+        Nuxt UI Pro ships with an extensive set of advanced components that cover a wide range of use-cases.<br>
+        Carefully crafted to reduce boilerplate code without sacrificing flexibility.
       </template>
 
       <UPageGrid>

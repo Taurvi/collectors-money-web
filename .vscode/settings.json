@@ -1,0 +1,12 @@
+{
+    "prettier.configPath": "prettier.config.js",
+    "prettier.prettierPath": "./node_modules/prettier",
+    "prettier.useEditorConfig": false,
+    "prettier.bracketSameLine": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.lintTask.options": ". --ignore-pattern './*,node_modules' --fix ."
+}

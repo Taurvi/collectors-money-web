@@ -1,0 +1,28 @@
+import { Amplify } from 'aws-amplify'
+import { fetchAuthSession, fetchUserAttributes, getCurrentUser, signIn, signOut } from 'aws-amplify/auth'
+import outputs from '../../amplify_outputs.json'
+import { defineNuxtPlugin } from '#app/nuxt'
+
+if (import.meta.client) {
+  Amplify.configure(outputs, { ssr: true })
+}
+
+export default defineNuxtPlugin({
+  name: 'AmplifyAPIs',
+  enforce: 'pre',
+  setup() {
+    return {
+      provide: {
+        Amplify: {
+          Auth: {
+            fetchAuthSession,
+            fetchUserAttributes,
+            signIn,
+            signOut,
+            getCurrentUser,
+          },
+        },
+      },
+    }
+  },
+})

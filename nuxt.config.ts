@@ -1,30 +1,30 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    extends: ["@nuxt/ui-pro"],
+  extends: ['@nuxt/ui-pro'],
 
-    modules: ["@nuxt/eslint", "@nuxt/ui"],
+  modules: ['@nuxt/eslint', '@nuxt/ui', 'nuxt-eslint-auto-explicit-import', '@vueuse/nuxt'],
 
-    // https://github.com/nuxt/nuxt/issues/25411
-    routeRules: {
-        "/": { swr: true },
+  // https://github.com/nuxt/nuxt/issues/25411
+  // routeRules: {
+  //     "/": { swr: true },
+  // },
+
+  devtools: {
+    enabled: true,
+  },
+  ui: {
+    global: true,
+  },
+
+  future: {
+    compatibilityVersion: 4,
+  },
+
+  compatibilityDate: '2024-11-03',
+
+  eslint: {
+    config: {
+      stylistic: true,
     },
-
-    devtools: {
-        enabled: true,
-    },
-
-    future: {
-        compatibilityVersion: 4,
-    },
-
-    eslint: {
-        config: {
-            stylistic: {
-                commaDangle: "never",
-                braceStyle: "1tbs",
-            },
-        },
-    },
-
-    compatibilityDate: "2024-07-11",
-});
+  },
+})
