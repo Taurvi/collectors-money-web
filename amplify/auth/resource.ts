@@ -18,7 +18,7 @@ export const auth = defineAuth({
           profilePicture: 'picture',
         },
       },
-      callbackUrls: ['http://localhost:3000/'],
+      callbackUrls: ['http://localhost:3000/login'],
       logoutUrls: ['http://localhost:3000/'],
     },
   },

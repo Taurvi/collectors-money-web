@@ -1,5 +1,5 @@
 import { Amplify } from 'aws-amplify'
-import { fetchAuthSession, fetchUserAttributes, getCurrentUser, signIn, signOut } from 'aws-amplify/auth'
+import { fetchAuthSession, fetchUserAttributes, getCurrentUser, signInWithRedirect, signOut } from 'aws-amplify/auth'
 import outputs from '../../amplify_outputs.json'
 import { defineNuxtPlugin } from '#app/nuxt'
 
@@ -17,12 +17,12 @@ export default defineNuxtPlugin({
           Auth: {
             fetchAuthSession,
             fetchUserAttributes,
-            signIn,
+            signInWithRedirect,
             signOut,
-            getCurrentUser,
-          },
-        },
-      },
+            getCurrentUser
+          }
+        }
+      }
     }
-  },
+  }
 })

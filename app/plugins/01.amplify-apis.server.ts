@@ -3,7 +3,7 @@ import {
   createAWSCredentialsAndIdentityIdProvider,
   createKeyValueStorageFromCookieStorageAdapter,
   createUserPoolsTokenProvider,
-  runWithAmplifyServerContext,
+  runWithAmplifyServerContext
 } from 'aws-amplify/adapter-core'
 import { fetchAuthSession, fetchUserAttributes, getCurrentUser } from 'aws-amplify/auth/server'
 import { parseAmplifyConfig } from 'aws-amplify/utils'
@@ -50,7 +50,7 @@ export default defineNuxtPlugin({
     const lastAuthUserCookie = useCookie(lastAuthUserCookieName, {
       sameSite: 'lax',
       expires,
-      secure: true,
+      secure: true
     })
 
     // Get all Amplify auth token cookie names
@@ -63,14 +63,14 @@ export default defineNuxtPlugin({
     const amplifyCookies = authKeys
       .map(name => ({
         name,
-        cookieRef: useCookie(name, { sameSite: 'lax', expires, secure: true }),
+        cookieRef: useCookie(name, { sameSite: 'lax', expires, secure: true })
       }))
       .reduce<Record<string, CookieRef<string | null | undefined>>>(
         (result, current) => ({
           ...result,
-          [current.name]: current.cookieRef,
+          [current.name]: current.cookieRef
         }),
-        {},
+        {}
       )
 
     // Create a key value storage based on the cookies
@@ -113,7 +113,7 @@ export default defineNuxtPlugin({
         if (cookieRef) {
           cookieRef.value = null
         }
-      },
+      }
     })
 
     // Create a token provider
@@ -126,8 +126,8 @@ export default defineNuxtPlugin({
     const libraryOptions: LibraryOptions = {
       Auth: {
         tokenProvider,
-        credentialsProvider,
-      },
+        credentialsProvider
+      }
     }
 
     return {
@@ -146,15 +146,15 @@ export default defineNuxtPlugin({
           Auth: {
             fetchAuthSession: (options: FetchAuthSessionOptions) =>
               runWithAmplifyServerContext(amplifyConfig, libraryOptions, contextSpec =>
-                fetchAuthSession(contextSpec, options),
+                fetchAuthSession(contextSpec, options)
               ),
             fetchUserAttributes: () =>
               runWithAmplifyServerContext(amplifyConfig, libraryOptions, contextSpec => fetchUserAttributes(contextSpec)),
             getCurrentUser: () =>
-              runWithAmplifyServerContext(amplifyConfig, libraryOptions, contextSpec => getCurrentUser(contextSpec)),
-          },
-        },
-      },
+              runWithAmplifyServerContext(amplifyConfig, libraryOptions, contextSpec => getCurrentUser(contextSpec))
+          }
+        }
+      }
     }
-  },
+  }
 })

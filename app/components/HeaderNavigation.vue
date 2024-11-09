@@ -1,15 +1,32 @@
 <script setup lang="ts">
-import { useAuthenticator } from '@aws-amplify/ui-vue'
+import { computed } from 'vue'
+import { Hub } from 'aws-amplify/utils'
+import { loginWithFacebook, logOut, isLoggedIn, getSession } from '@/composables/auth'
+import { useNuxtApp } from '#app/nuxt'
 
-const auth = useAuthenticator()
-const session = await useNuxtApp().$Amplify.Auth.fetchAuthSession()
+const app = useNuxtApp()
+const session = await getSession(app)
+const checkIsLoggedIn = await isLoggedIn(app)
 
 const isSignedIn = computed(() => {
-  return auth.authStatus === 'authenticated' && session.tokens != null
+  return checkIsLoggedIn
 })
 
+const triggerLogin = async function (): Promise<void> {
+  await loginWithFacebook(app)
+}
+
+const triggerLogOut = async function (): Promise<void> {
+  await logOut(app)
+}
+
 const profileName = computed(() => {
-  return session.tokens?.idToken?.payload.name
+  const fullName = session.tokens?.idToken?.payload.name as string
+  if (fullName == null) {
+    return ''
+  }
+  const split = fullName.split(' ')
+  return split[0]
 })
 
 const profilePic = computed(() => {
@@ -18,17 +35,16 @@ const profilePic = computed(() => {
   return pictureJson.data.url
 })
 
-async function signOutHandler() {
-  await auth.signOut()
-  await useNuxtApp().$router.push('/')
-}
+Hub.listen('auth', (data) => {
+  console.log(data.payload)
+})
 </script>
 
 <template>
   <UHeader>
     <template #logo>
-      Nuxt UI Pro <UBadge
-        label="Starter"
+      Money Collectors<UBadge
+        label="Beta"
         variant="subtle"
         class="mb-0.5"
       />
@@ -57,7 +73,7 @@ async function signOutHandler() {
           aria-label="Sign out button"
           color="gray"
           variant="ghost"
-          @click="signOutHandler"
+          @click="triggerLogOut"
         >
           Sign Out
         </UButton>
@@ -68,7 +84,7 @@ async function signOutHandler() {
           aria-label="Sign in button"
           color="gray"
           variant="ghost"
-          @click="$router.push('/login')"
+          @click="triggerLogin"
         >
           Log In
         </UButton>

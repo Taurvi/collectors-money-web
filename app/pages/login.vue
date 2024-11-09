@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import '@aws-amplify/ui-vue/styles.css'
-import { Authenticator } from '@aws-amplify/ui-vue'
+import { isLoggedIn } from '@/composables/auth'
+import { useNuxtApp } from '#app/nuxt'
+
+const app = useNuxtApp()
+const checkIsLoggedIn = await isLoggedIn(app)
+
+if (checkIsLoggedIn) {
+  await app.$router.push('/profile')
+}
+else {
+  await app.$router.push('/')
+}
 </script>
 
 <template>
-  <div>
-    <Authenticator
-      :social-providers="['facebook']"
-      :hide-sign-up="true"
-    />
-  </div>
+  <div />
 </template>

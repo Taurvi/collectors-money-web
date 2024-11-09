@@ -5,13 +5,13 @@ useHead({
   meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
   link: [{ rel: 'icon', href: '/favicon.ico' }],
   htmlAttrs: {
-    lang: 'en'
-  }
+    lang: 'en',
+  },
 })
 
-const title = 'Nuxt UI Pro - Starter'
+const title = 'Money Collectors'
 const description
-        = 'Nuxt UI Pro is a collection of premium Vue components built on top of Nuxt UI to create beautiful & responsive Nuxt applications in minutes.'
+        = 'A beta application for managing group expenses.'
 
 useSeoMeta({
   title,
@@ -20,7 +20,7 @@ useSeoMeta({
   ogDescription: description,
   ogImage: 'https://ui-pro-starter.nuxt.dev/social-card.png',
   twitterImage: 'https://ui-pro-starter.nuxt.dev/social-card.png',
-  twitterCard: 'summary_large_image'
+  twitterCard: 'summary_large_image',
 })
 </script>
 
@@ -32,8 +32,8 @@ useSeoMeta({
   </UMain>
 
   <UFooter>
-    <template #left>
-      Copyright © {{ new Date().getFullYear() }}
+    <template #center>
+      Copyright © {{ new Date().getFullYear() }} Stephen Rimbakusumo
     </template>
   </UFooter>
 </template>
