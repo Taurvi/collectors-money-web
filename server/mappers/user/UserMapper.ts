@@ -1,6 +1,6 @@
-import type { IUser } from '../schemas/app/user'
-import type { IDbUser } from '../schemas/database/IDbUser'
-import type { IMapper } from './IMapper'
+import { USER_SCHEMA, type IUser } from '../../schemas/app/user'
+import type { IDbUser } from '../../schemas/database/IDbUser'
+import type { IMapper } from '../IMapper'
 
 /**
  * Maps user object
@@ -12,10 +12,10 @@ export class UserMapper implements IMapper<IDbUser, IUser> {
     */
   mapToDb(input: IUser): IDbUser {
     return {
-      id: input.id,
+      id: input.userId,
       fullName: input.fullName,
       profilePicture: input.profilePicture,
-      lastUpdatedBy: input.id,
+      lastUpdatedBy: input.lastUpdatedBy,
     }
   }
 
@@ -24,10 +24,13 @@ export class UserMapper implements IMapper<IDbUser, IUser> {
     * @returns {IUser} - user object
     */
   mapToApp(input: IDbUser): IUser {
-    return {
-      id: input.id,
+    return USER_SCHEMA.parse({
+      userId: input.id,
       fullName: input.fullName,
       profilePicture: input.profilePicture,
-    }
+      updatedAt: input.updatedAt,
+      createdAt: input.createdAt,
+      lastUpdatedBy: input.lastUpdatedBy,
+    })
   }
 }

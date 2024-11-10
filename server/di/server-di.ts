@@ -1,5 +1,5 @@
 import type { IMapper } from '../mappers/IMapper'
-import { UserMapper } from '../mappers/UserMapper'
+import { UserMapper } from '../mappers/user/UserMapper'
 import type { IUser } from '../schemas/app/user'
 import type { IDbUser } from '../schemas/database/IDbUser'
 import type { IDatabaseStore } from '../store/DatabaseStore'

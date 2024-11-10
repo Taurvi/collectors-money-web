@@ -25,7 +25,7 @@ export class UserStore implements IDatabaseStore<IUser> {
     const currentDate = new Date().toISOString()
     const recordType = `${RECORD_TYPE_SCHEMA.enum.USER}::${currentDate}`
     const dbInput = this.mapper.mapToDb(input)
-    const response = await client.models.Primary.create(contextSpec, { ...dbInput, recordType: recordType })
+    const response = await client.models.Primary.create(contextSpec, { ...dbInput, recordType: recordType, lastUpdatedBy: input.userId })
     if (response.errors) {
       return {
         isSuccess: false,
