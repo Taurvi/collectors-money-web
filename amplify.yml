@@ -1,0 +1,19 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - corepack enable
+        - npx --yes nypm i
+    build:
+      commands:
+        - pnpm ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
+        - pnpm run build
+  artifacts:
+    baseDirectory: .amplify-hosting
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .npm/**/*
+      - node_modules/**/*
