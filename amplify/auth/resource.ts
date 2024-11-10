@@ -18,7 +18,7 @@ export const auth = defineAuth({
         },
       },
       callbackUrls: ['http://localhost:3000/login', 'https://beta-money.collectors.life/login'],
-      logoutUrls: ['http://localhost:3000/', 'https://beta-money.collectors.life/logout'],
+      logoutUrls: ['http://localhost:3000/', 'https://beta-money.collectors.life/'],
     },
   },
 })
