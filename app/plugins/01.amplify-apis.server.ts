@@ -17,6 +17,9 @@ import { generateClient } from 'aws-amplify/data/server'
 import outputs from '../../amplify_outputs.json'
 import type { ISchema } from '../../amplify/data/resource'
 
+/**
+ * @see https://docs.amplify.aws/gen1/javascript/build-a-backend/server-side-rendering/nuxt/
+ */
 const amplifyConfig = parseAmplifyConfig(outputs)
 const userPoolClientId = amplifyConfig.Auth!.Cognito.userPoolClientId
 const lastAuthUserCookieName = `CognitoIdentityServiceProvider.${userPoolClientId}.LastAuthUser`
@@ -126,8 +129,6 @@ export default defineNuxtPlugin({
           GraphQL: {
             client: {
               models: modelWrapper(client.models),
-              // Follow this typing to ensure the`graphql` API return type can
-              // be inferred correctly according to your queries and mutations
               graphql: <
                 FALLBACK_TYPES = unknown,
                 TYPED_GQL_STRING extends string = string,

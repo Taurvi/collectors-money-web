@@ -1,5 +1,8 @@
 import { type ClientSchema, a, defineData } from '@aws-amplify/backend'
 
+/**
+ * @see https://docs.amplify.aws/vue/build-a-backend/data/
+ */
 const schema = a.schema({
   Primary: a
     .model({

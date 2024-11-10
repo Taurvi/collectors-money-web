@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   extends: ['@nuxt/ui-pro'],
 
-  modules: ['@nuxt/eslint', '@nuxt/ui', 'nuxt-eslint-auto-explicit-import', '@vueuse/nuxt'],
+  modules: ['@nuxt/eslint', '@nuxt/ui', 'nuxt-eslint-auto-explicit-import', '@vueuse/nuxt', '@nuxt/test-utils/module'],
 
   devtools: {
     enabled: true,
@@ -10,11 +10,6 @@ export default defineNuxtConfig({
   ui: {
     global: true,
   },
-
-  // https://github.com/nuxt/nuxt/issues/25411
-  // routeRules: {
-  //     "/": { swr: true },
-  // },
 
   sourcemap: false,
 

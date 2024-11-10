@@ -1,8 +1,7 @@
 import { defineAuth, secret } from '@aws-amplify/backend'
 
 /**
- * Define and configure your auth resource
- * @see https://docs.amplify.aws/gen2/build-a-backend/auth
+ * @see https://docs.amplify.aws/vue/build-a-backend/auth/
  */
 export const auth = defineAuth({
   loginWith: {
@@ -18,7 +17,7 @@ export const auth = defineAuth({
           profilePicture: 'picture',
         },
       },
-      callbackUrls: ['http://localhost:3000/login'],
+      callbackUrls: ['http://localhost:3000/login', 'https://oauth.pstmn.io/v1/callback'],
       logoutUrls: ['http://localhost:3000/'],
     },
   },

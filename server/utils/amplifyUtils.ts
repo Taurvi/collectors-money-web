@@ -10,17 +10,17 @@ import {
   runWithAmplifyServerContext,
 } from 'aws-amplify/adapter-core'
 import { parseAmplifyConfig } from 'aws-amplify/utils'
-
 import type { LibraryOptions } from '@aws-amplify/core'
-
 import { generateClient } from 'aws-amplify/data/server'
 import outputs from '../../amplify_outputs.json'
 import type { ISchema } from '../../amplify/data/resource'
 
+/**
+ * @see https://docs.amplify.aws/react/build-a-backend/data/connect-from-server-runtime/nuxtjs-server-runtime/
+ */
 const amplifyConfig = parseAmplifyConfig(outputs)
 
 function createCookieStorageAdapter(event: H3Event<EventHandlerRequest>): CookieStorage.Adapter {
-  // `parseCookies`, `setCookie` and `deleteCookie` are Nuxt provided functions
   const readOnlyCookies = parseCookies(event)
 
   return {
@@ -45,11 +45,8 @@ function createCookieStorageAdapter(event: H3Event<EventHandlerRequest>): Cookie
 
 function createLibraryOptions(event: H3Event<EventHandlerRequest>): LibraryOptions {
   const cookieStorage = createCookieStorageAdapter(event)
-
   const keyValueStorage = createKeyValueStorageFromCookieStorageAdapter(cookieStorage)
-
   const tokenProvider = createUserPoolsTokenProvider(amplifyConfig.Auth!, keyValueStorage)
-
   const credentialsProvider = createAWSCredentialsAndIdentityIdProvider(amplifyConfig.Auth!, keyValueStorage)
 
   return {
