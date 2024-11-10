@@ -1,20 +1,23 @@
 import { type ClientSchema, a, defineData } from '@aws-amplify/backend'
 
-const userSchema = a.schema({
-  User: a
+const schema = a.schema({
+  Primary: a
     .model({
-      id: a.id().required(),
-      name: a.string(),
+      id: a.string().required(),
+      recordType: a.string().required(),
+      fullName: a.string(),
       profilePicture: a.string(),
+      lastUpdatedBy: a.string().required(),
     })
-    .authorization(allow => [allow.authenticated('identityPool')]),
+    .identifier(['id', 'recordType'])
+    .authorization(allow => [allow.owner(), allow.authenticated('userPools').to(['read', 'update'])]),
 })
 
-export type IUserSchema = ClientSchema<typeof userSchema>
+export type ISchema = ClientSchema<typeof schema>
 
 export const data = defineData({
-  schema: userSchema,
+  schema: schema,
   authorizationModes: {
-    defaultAuthorizationMode: 'identityPool',
+    defaultAuthorizationMode: 'userPool',
   },
 })

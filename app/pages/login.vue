@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { isLoggedIn } from '@/composables/auth'
-import { useNuxtApp } from '#app/nuxt'
 
 const app = useNuxtApp()
 const checkIsLoggedIn = await isLoggedIn(app)

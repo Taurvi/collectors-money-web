@@ -2,7 +2,6 @@
 import { computed } from 'vue'
 import { Hub } from 'aws-amplify/utils'
 import { loginWithFacebook, logOut, isLoggedIn, getSession } from '@/composables/auth'
-import { useNuxtApp } from '#app/nuxt'
 
 const app = useNuxtApp()
 const session = await getSession(app)

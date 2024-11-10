@@ -4,17 +4,19 @@ export default defineNuxtConfig({
 
   modules: ['@nuxt/eslint', '@nuxt/ui', 'nuxt-eslint-auto-explicit-import', '@vueuse/nuxt'],
 
-  // https://github.com/nuxt/nuxt/issues/25411
-  // routeRules: {
-  //     "/": { swr: true },
-  // },
-
   devtools: {
     enabled: true,
   },
   ui: {
     global: true,
   },
+
+  // https://github.com/nuxt/nuxt/issues/25411
+  // routeRules: {
+  //     "/": { swr: true },
+  // },
+
+  sourcemap: false,
 
   future: {
     compatibilityVersion: 4,
