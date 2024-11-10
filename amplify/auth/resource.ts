@@ -17,8 +17,8 @@ export const auth = defineAuth({
           profilePicture: 'picture',
         },
       },
-      callbackUrls: ['http://localhost:3000/login', 'https://oauth.pstmn.io/v1/callback'],
-      logoutUrls: ['http://localhost:3000/'],
+      callbackUrls: ['http://localhost:3000/login', 'https://beta-money.collectors.life//login'],
+      logoutUrls: ['http://localhost:3000/', 'https://beta-money.collectors.life/logout'],
     },
   },
 })
