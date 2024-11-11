@@ -7,6 +7,8 @@ export class GroupMemberMapper implements IMapper<IDbGroupMember, IGroupMember> 
     return {
       id: input.userId,
       groupId: input.groupId,
+      createdAt: input.createdAt.toISOString(),
+      updatedAt: input.updatedAt.toISOString(),
       lastUpdatedBy: input.lastUpdatedBy,
     }
   }
@@ -15,8 +17,8 @@ export class GroupMemberMapper implements IMapper<IDbGroupMember, IGroupMember> 
     return GROUP_MEMBER_SCHEMA.parse({
       userId: input.id,
       groupId: input.groupId,
-      updatedAt: input.updatedAt,
       createdAt: input.createdAt,
+      updatedAt: input.updatedAt,
       lastUpdatedBy: input.lastUpdatedBy,
     })
   }

@@ -20,9 +20,10 @@ export default defineEventHandler(async (event) => {
     const pictureUrl = pictureJson.data.url
 
     const userObject = USER_SCHEMA.parse({
-      id: user.userId,
+      userId: user.userId,
       fullName: fullName,
       profilePicture: pictureUrl,
+      lastUpdatedBy: user.userId,
     })
 
     const dbStoreCreateUserResponse = await userStore.create(contextSpec, userObject)

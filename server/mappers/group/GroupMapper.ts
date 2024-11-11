@@ -12,9 +12,11 @@ export class GroupMapper implements IMapper<IDbGroup, IGroup> {
     */
   public mapToDb(input: IGroup): IDbGroup {
     return {
-      id: input.ownerUserId,
+      id: input.userId,
       groupId: input.groupId,
       groupName: input.groupName,
+      createdAt: input.createdAt.toISOString(),
+      updatedAt: input.updatedAt.toISOString(),
       lastUpdatedBy: input.lastUpdatedBy ?? null,
     }
   }
@@ -25,11 +27,11 @@ export class GroupMapper implements IMapper<IDbGroup, IGroup> {
     */
   public mapToApp(input: IDbGroup): IGroup {
     return GROUP_SCHEMA.parse({
-      ownerUserId: input.id,
+      userId: input.id,
       groupId: input.groupId,
       groupName: input.groupName,
-      updatedAt: input.updatedAt,
       createdAt: input.createdAt,
+      updatedAt: input.updatedAt,
       lastUpdatedBy: input.lastUpdatedBy,
     })
   }

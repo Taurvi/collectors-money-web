@@ -1,13 +1,17 @@
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { IMapper } from '../IMapper'
+import type { IExpense } from '../../../server/schemas/app/expense'
+import type { IDbExpense } from '../../../server/schemas/database/IDbExpense'
 import { ExpenseMapper } from './ExpenseMapper'
-import type { IExpense } from '~~/server/schemas/app/expense'
-import type { IDbExpense } from '~~/server/schemas/database/IDbExpense'
 
 describe('ExpenseMapper', () => {
+  const mockDate = new Date(1337)
   let sut: IMapper<IDbExpense, IExpense>
 
   beforeEach(() => {
+    vi.resetAllMocks()
+    vi.useFakeTimers()
+    vi.setSystemTime(mockDate)
     sut = new ExpenseMapper()
   })
 
@@ -15,13 +19,15 @@ describe('ExpenseMapper', () => {
     it('should map expense to db expense', () => {
       // arrange
       const input: IExpense = {
-        ownerId: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
+        userId: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
         expenseId: 'aaffd8b2-aecf-4fce-9c0f-154b4287a80a',
         groupId: '44646461-f4bf-489a-99f0-a0788671b176',
         expenseName: 'whale food',
         expenseDescription: 'whales like food',
         targetUserId: 'a01e4cf6-de69-403a-8dad-1fa9677a8ab1',
         amount: 13.37,
+        createdAt: mockDate,
+        updatedAt: mockDate,
         lastUpdatedBy: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
       }
 
@@ -33,6 +39,8 @@ describe('ExpenseMapper', () => {
         expenseDescription: 'whales like food',
         targetUserId: 'a01e4cf6-de69-403a-8dad-1fa9677a8ab1',
         amount: 13.37,
+        createdAt: mockDate.toISOString(),
+        updatedAt: mockDate.toISOString(),
         lastUpdatedBy: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
       }
 
@@ -55,20 +63,22 @@ describe('ExpenseMapper', () => {
         expenseDescription: 'whales like food',
         targetUserId: 'a01e4cf6-de69-403a-8dad-1fa9677a8ab1',
         amount: 13.37,
+        createdAt: mockDate.toISOString(),
+        updatedAt: mockDate.toISOString(),
         lastUpdatedBy: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
       }
 
       const expected: IExpense = {
-        ownerId: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
+        userId: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
         expenseId: 'aaffd8b2-aecf-4fce-9c0f-154b4287a80a',
         groupId: '44646461-f4bf-489a-99f0-a0788671b176',
         expenseName: 'whale food',
         expenseDescription: 'whales like food',
         targetUserId: 'a01e4cf6-de69-403a-8dad-1fa9677a8ab1',
         amount: 13.37,
+        createdAt: mockDate,
+        updatedAt: mockDate,
         lastUpdatedBy: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
-        createdAt: undefined,
-        updatedAt: undefined,
       }
 
       // act

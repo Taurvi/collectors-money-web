@@ -5,6 +5,9 @@ import { z } from 'zod'
  */
 const RECORD_TYPE = {
   USER: 'user',
+  GROUP: 'group',
+  GROUP_MEMBER: 'group_member',
+  EXPENSE: 'expense',
 } as const
 
 export const RECORD_TYPE_SCHEMA = z.nativeEnum(RECORD_TYPE)

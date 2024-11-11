@@ -5,7 +5,6 @@ import { AUDIT_SCHEMA } from './audit'
  * expense object schema
  */
 export const EXPENSE_SCHEMA = AUDIT_SCHEMA.extend({
-  ownerId: z.string().uuid(),
   expenseId: z.string().uuid(),
   groupId: z.string().uuid(),
   expenseName: z.string().min(1).max(128),

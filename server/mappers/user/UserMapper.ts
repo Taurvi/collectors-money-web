@@ -15,6 +15,8 @@ export class UserMapper implements IMapper<IDbUser, IUser> {
       id: input.userId,
       fullName: input.fullName,
       profilePicture: input.profilePicture,
+      createdAt: input.createdAt.toISOString(),
+      updatedAt: input.updatedAt.toISOString(),
       lastUpdatedBy: input.lastUpdatedBy,
     }
   }
@@ -28,8 +30,8 @@ export class UserMapper implements IMapper<IDbUser, IUser> {
       userId: input.id,
       fullName: input.fullName,
       profilePicture: input.profilePicture,
-      updatedAt: input.updatedAt,
       createdAt: input.createdAt,
+      updatedAt: input.updatedAt,
       lastUpdatedBy: input.lastUpdatedBy,
     })
   }

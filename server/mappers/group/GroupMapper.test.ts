@@ -1,13 +1,17 @@
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { IMapper } from '../IMapper'
 import type { IGroup } from '../../../server/schemas/app/group'
 import type { IDbGroup } from '../../../server/schemas/database/IDbGroup'
 import { GroupMapper } from './GroupMapper'
 
 describe('GroupMapper', () => {
+  const mockDate = new Date(1337)
   let sut: IMapper<IDbGroup, IGroup>
 
   beforeEach(() => {
+    vi.resetAllMocks()
+    vi.useFakeTimers()
+    vi.setSystemTime(mockDate)
     sut = new GroupMapper()
   })
 
@@ -15,9 +19,11 @@ describe('GroupMapper', () => {
     it('should map group to db group', () => {
       // arrange
       const input: IGroup = {
-        ownerUserId: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
+        userId: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
         groupId: '44646461-f4bf-489a-99f0-a0788671b176',
         groupName: 'whale family',
+        createdAt: mockDate,
+        updatedAt: mockDate,
         lastUpdatedBy: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
       }
 
@@ -25,6 +31,8 @@ describe('GroupMapper', () => {
         id: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
         groupId: '44646461-f4bf-489a-99f0-a0788671b176',
         groupName: 'whale family',
+        createdAt: mockDate.toISOString(),
+        updatedAt: mockDate.toISOString(),
         lastUpdatedBy: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
       }
 
@@ -43,16 +51,18 @@ describe('GroupMapper', () => {
         id: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
         groupId: '44646461-f4bf-489a-99f0-a0788671b176',
         groupName: 'whale family',
+        createdAt: mockDate.toISOString(),
+        updatedAt: mockDate.toISOString(),
         lastUpdatedBy: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
       }
 
       const expected: IGroup = {
-        ownerUserId: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
+        userId: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
         groupId: '44646461-f4bf-489a-99f0-a0788671b176',
         groupName: 'whale family',
+        createdAt: mockDate,
+        updatedAt: mockDate,
         lastUpdatedBy: '586b3a12-ceb1-42d7-9d70-b14b5a94ded6',
-        updatedAt: undefined,
-        createdAt: undefined,
       }
 
       // act
